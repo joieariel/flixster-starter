@@ -17,11 +17,14 @@ const MovieList = () => {
             
             {data.results.map(movie => (
                 <MovieCard movie={movie} key={movie.id} />
-                
+            
             ))}
         </div>
     );
-}
+} // COME BACK FOR STEP 3 NOW PLAYING
+
+export default MovieList;
+
 // notes for MovieList component:
 // data.results is the array of movies from the data.js file
 // for each movie it creates a MovieCard component
