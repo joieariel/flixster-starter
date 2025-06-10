@@ -1,0 +1,9 @@
+.load-btn {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    background-color: #A0D2EB;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;  
+}

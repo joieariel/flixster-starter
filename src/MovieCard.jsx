@@ -14,7 +14,7 @@ import React from "react";
 import './MovieCard.css';
 import data from './data/data.js';
 
-const MovieCard = ({ movie} ) => { // use destructing 
+const MovieCard = ({ movie} ) => { // use destructing
     return (
         <div className="movie-card">
             <h2 className="movie-title">{movie.title}</h2>
@@ -23,7 +23,7 @@ const MovieCard = ({ movie} ) => { // use destructing
             - base URL (w500 = width 500px) + movie-specific image path*/}
             <section className="movie-content">
             <img className="movie-img" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-            <h3 className="movie-voting-avg">{movie.voting_average}</h3>
+            <h3 className="movie-voting-avg">🍅 {movie.vote_average}</h3>
             </section>
         </div>
 

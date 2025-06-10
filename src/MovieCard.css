@@ -1,4 +1,26 @@
+/*.movie-card {
+    border: 3px solid black;
+    border-radius: 13%;
+    margin: 5px;
+}
+*/
 .movie-card {
-    border: 5px solid black;
-    border-radius: 10%;
+    border: 1px solid black;
+    border-radius: 40px;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 5px 1px #c7c7c7;
+    margin: 10px;
+    
+}
+
+.movie-card:hover {
+    background-color: rgb(234, 234, 234);
+    transform: translateY(-5px);
+}
+.movie-img{
+    margin: 30px;
+    border-radius: 10%;   
 }

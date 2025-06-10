@@ -14,10 +14,10 @@ import data from './data/data';
 const MovieList = () => {
     return (
         <div className="movie-list">
-            
+
             {data.results.map(movie => (
                 <MovieCard movie={movie} key={movie.id} />
-            
+
             ))}
         </div>
     );
