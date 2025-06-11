@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  font-size: 16px;
 }
 
 button {
@@ -11,9 +12,49 @@ button {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
 
 button:hover {
   background-color: #777;
   color: white;
+}
+
+/* Responsive global styles */
+@media (max-width: 992px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+}
+
+/* base responsive container */
+.container {
+  width: 100%;         /* takes full width of parent element */
+  max-width: 1200px;   /* prevents container from getting too wide on large screens */
+  margin: 0 auto;      /* centers the container horizontally */
+  padding: 0 15px;     /* adds spacing on the sides for content breathing room */
+  box-sizing: border-box; /* includes padding in width calculation to avoid overflow */
 }

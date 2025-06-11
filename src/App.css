@@ -12,17 +12,45 @@
   padding: 20px;
 }
 
-@media (max-width: 600px) {
+/* responsive styles for different screen sizes */
+@media (max-width: 1200px) {
+  .App-header {
+    padding: 15px; /* slightly reduced padding on large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .App-header {
+    padding: 12px; /* further reduced padding on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    flex-wrap: wrap; /* allows header items to wrap to next line */
+    gap: 10px; /* consistent spacing between wrapped items */
+    justify-content: center; /* centers items when wrapped */
+  }
+}
+
+@media (max-width: 576px) {
+  .App-header {
+    flex-direction: column; /* stacks all header elements vertically */
+    padding: 10px;
+  }
+
   .movie-card {
-    width: 100%;
+    width: 100%; /* full width cards on mobile */
   }
 
   .search-bar {
-    flex-direction: column;
+    flex-direction: column; /* vertical layout for search components */
     gap: 10px;
+    width: 100%; /* full width search bar */
   }
 
   .search-bar form {
     flex-direction: column;
+    width: 100%; /* ensures form takes full width */
   }
 }

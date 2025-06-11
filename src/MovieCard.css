@@ -12,6 +12,26 @@
     text-align: center;
 }
 
+/* responsive card sizes for different screen widths */
+@media (max-width: 1200px) {
+    .movie-card {
+        width: 30%; /* 3 cards per row for large screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .movie-card {
+        width: 45%; /* 2 cards per row for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-card {
+        width: 90%; /* single column layout for mobile */
+        margin: 8px auto; /* centered cards with consistent spacing */
+    }
+}
+
 .movie-card:hover {
     background-color: rgb(234, 234, 234);
     transform: translateY(-5px);
@@ -34,7 +54,12 @@
 }
 
 .movie-title {
-    font-size: 1rem; /* Smaller font size for titles */
+    font-size: 1rem;
     margin-top: 5px;
     margin-bottom: 5px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* add ellipsis for overflow text */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }

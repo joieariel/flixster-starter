@@ -8,3 +8,29 @@
     margin: 0 auto;
     padding: 0 15px;
 }
+
+/* responsive layout for different screen sizes */
+@media (max-width: 1200px) {
+    .movie-list {
+        max-width: 960px; /* bootstrap-like container width for large screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .movie-list {
+        max-width: 720px;
+        justify-content: center; /* centers cards when fewer per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-list {
+        max-width: 540px; /* tablet-optimized width */
+    }
+}
+
+@media (max-width: 576px) {
+    .movie-list {
+        padding: 0 10px; /* reduced padding on mobile for more content space */
+    }
+}

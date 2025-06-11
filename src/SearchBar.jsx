@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MovieCard.css";
 import "./MovieList.css";
 import "./SearchBar.css";
 
-function SearchBar({ onCityChange }) {
+function SearchBar({ onSearch }) {
+  // state tracks what the user types in search
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleSearch = (event) => {
     event.preventDefault();
-    const submittedSearch = event.target.elements.searchInput.value;
-    onCityChange(submittedSearch);
+    // sents search query to the parent component (App)
+    onSearch(searchQuery);
+  };
+
+  const handleSearchChange = (event) => {
+    //update state as user types
+    setSearchQuery(event.target.value);
   };
 
   return (
@@ -16,8 +24,11 @@ function SearchBar({ onCityChange }) {
         className="search-input"
         type="text"
         name="searchInput"
-        placeholder="Search..."
+        placeholder="Search for a movie..."
+        value={searchQuery}
+        onChange={handleSearchChange}
       />
+
       <button className="search-button" type="submit">
         Search
       </button>
