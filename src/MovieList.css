@@ -12,7 +12,7 @@
 /* responsive layout for different screen sizes */
 @media (max-width: 1200px) {
     .movie-list {
-        max-width: 960px; /* bootstrap-like container width for large screens */
+        max-width: 960px;
     }
 }
 

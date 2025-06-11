@@ -11,25 +11,28 @@ Then, use the fetched movie data to populate your
 */
 
 import React from "react";
-import './MovieCard.css';
-//import data from './data/data.js';
+import "./MovieCard.css";
 
-const MovieCard = ({ movie }) => { // use destructing
-    return (
-        <div className="movie-card">
-            <main className="movie-card-main">
-            <h2 className="movie-title">{movie.title}</h2>
-            {/* note for img tag: needed to construct full image URL TMDB API only provides partial path in poster_path
+const MovieCard = ({ movie, onMovieClick }) => {
+  // use destructing
+
+  return (
+    <div className="movie-card" onClick={() => onMovieClick(movie)}>
+      <main className="movie-card-main">
+        <h2 className="movie-title">{movie.title}</h2>
+        {/* note for img tag: needed to construct full image URL TMDB API only provides partial path in poster_path
             - this creates the full link to the movie poster image
             - base URL (w500 = width 500px) + movie-specific image path*/}
-            <section className="movie-content">
-            <img className="movie-img" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-            <h3 className="movie-voting-avg">🍅 {movie.vote_average}</h3>
-            </section>
-            </main>
-        </div>
-
-    );
-}
+        <section className="movie-content">
+          <img
+            className="movie-img"
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          />
+          <h3 className="movie-voting-avg">🍅 {movie.vote_average}</h3>
+        </section>
+      </main>
+    </div>
+  );
+};
 
 export default MovieCard;

@@ -5,17 +5,17 @@ Fetching movie data from the TMDb API
 Looping through the fetched data and creating a MovieCard component for each individual movie
 Arranging all the MovieCard components nicely on the screen
 */
+
 import React from "react";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
-//import data from './data/data';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, onMovieClick }) => {
   console.log(movies);
   return (
     <div className="movie-list">
       {movies.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} />
+        <MovieCard movie={movie} key={movie.id} onMovieClick={onMovieClick} />
       ))}
     </div>
   );
@@ -25,9 +25,6 @@ const MovieList = ({ movies }) => {
 // data.results is the array of movies from the data.js file
 // for each movie it creates a MovieCard component
 // pass in the entire movie component
-// give each componene a unique id (requried by react for lists)
-/*alternative option"
-
-*/
+// give each component a unique id (requried by react for lists)
 
 export default MovieList;

@@ -3,7 +3,7 @@ import "./MovieCard.css";
 import "./MovieList.css";
 import "./SearchBar.css";
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, onNowPlaying }) {
   // state tracks what the user types in search
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -18,19 +18,50 @@ function SearchBar({ onSearch }) {
     setSearchQuery(event.target.value);
   };
 
+  const handleClear = () => {
+    setSearchQuery("");
+    //  clear the search results in the parent component
+    onSearch("");
+  };
+
+  const handleNowPlaying = () => {
+    // clear search and show now playing movies
+    setSearchQuery("");
+    onNowPlaying();
+  };
+
   return (
     <form className="search-form" onSubmit={handleSearch}>
-      <input
-        className="search-input"
-        type="text"
-        name="searchInput"
-        placeholder="Search for a movie..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
+      <div className="search-input-container">
+        <input
+          className="search-input"
+          type="text"
+          name="searchInput"
+          placeholder="Search for a movie..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        {searchQuery && (
+          <button
+            type="button"
+            className="clear-button"
+            onClick={handleClear}
+          >
+            ✕
+          </button>
+        )}
+      </div>
 
       <button className="search-button" type="submit">
         Search
+      </button>
+
+      <button
+        type="button"
+        className="now-playing-button"
+        onClick={handleNowPlaying}
+      >
+        Now Playing
       </button>
     </form>
   );
