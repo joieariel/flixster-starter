@@ -2,8 +2,9 @@
 .movie-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-    
+    justify-content: flex-start;
+    align-items: flex-start; /* to align tops of cards */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }

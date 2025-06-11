@@ -2,7 +2,7 @@ import React from "react";
 import "./MovieCard.css";
 import "./MovieList.css";
 import "./SearchBar.css";
-/*
+
 function SearchBar({ onCityChange }) {
   const handleSearch = (event) => {
     event.preventDefault();
@@ -26,4 +26,3 @@ function SearchBar({ onCityChange }) {
 }
 
 export default SearchBar;
-*/
