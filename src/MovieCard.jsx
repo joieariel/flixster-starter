@@ -12,7 +12,6 @@ Then, use the fetched movie data to populate your
 
 import React from "react";
 import './MovieCard.css';
-import data from './data/data.js';
 
 const MovieCard = ({ movie} ) => { // use destructing
     return (

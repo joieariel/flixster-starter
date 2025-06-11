@@ -7,21 +7,20 @@ Arranging all the MovieCard components nicely on the screen
 */
 
 import React from "react";
-import MovieCard from './MovieCard'
-import './MovieList.css';
-import data from './data/data';
+import MovieCard from "./MovieCard";
+import "./MovieList.css";
+//import data from './data/data';
 
-const MovieList = () => {
-    return (
-        <div className="movie-list">
-
-            {data.results.map(movie => (
-                <MovieCard movie={movie} key={movie.id} />
-
-            ))}
-        </div>
-    );
-} // COME BACK FOR STEP 3 NOW PLAYING
+const MovieList = ({ movies }) => {
+  console.log(movies);
+  return (
+    <div className="movie-list">
+      {movies.map((movie) => (
+        <MovieCard movie={movie} key={movie.id} />
+      ))}
+    </div>
+  );
+};
 
 export default MovieList;
 

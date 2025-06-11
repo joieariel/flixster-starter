@@ -1,7 +1,6 @@
 import React from "react";
 import './MovieCard.css';
 import './MovieList.css';
-import data from './data/data.js';
 
 
 const LoadMore = () => {
@@ -14,6 +13,6 @@ const LoadMore = () => {
 
 
     )
-} 
+}
 
 export default LoadMore
