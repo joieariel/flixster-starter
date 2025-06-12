@@ -29,6 +29,8 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   // state to store the selected movie for the modal
   const [selectedMovie, setSelectedMovie] = useState(null);
+  // state to track the current sort method
+  const [sortMethod, setSortMethod] = useState("none");
 
 
   useEffect(() => {
@@ -160,6 +162,14 @@ const App = () => {
     } else {
       getMovies(nextPage);
     }
+
+    // re-apply the current sort after loading more movies if a sort is active
+    if (sortMethod !== "none") {
+      // we need to wait for the new movies to be loaded before sorting
+      setTimeout(() => {
+        handleSortChange(sortMethod);
+      }, 500);
+    }
   };
 
   // handle when a movie is clicked (open modal)
@@ -169,14 +179,46 @@ const App = () => {
     setIsOpen(true);
   };
 
+  // function to handle sorting when an option is selected
+  const handleSortChange = (sortType) => {
+    // update the sort method state
+    setSortMethod(sortType);
+
+    // create a copy of the movies array to sort
+    const sortedMovies = [...movies];
+
+    // apply different sorting logic based on the selected sort type
+    switch (sortType) {
+      case "title":
+        // sort alphabetically by title
+        sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "date":
+        // sort by release date (newest first)
+        sortedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        break;
+      case "rating":
+        // sort by vote average (highest first)
+        sortedMovies.sort((a, b) => b.vote_average - a.vote_average);
+        break;
+      default:
+        // no sorting (keep original order)
+        break;
+    }
+
+    // update the movies state with the sorted array
+    setMovies(sortedMovies);
+  };
+
   return (
     <div className="App">
-      <header>
-        <h1 className="App-header">
-          Flixster
-          {/* pass the search handler to SearchBar */}
-          <SearchBar onSearch={handleSearch} onNowPlaying={clearSearch} />
-        </h1>
+      <header className="App-header">
+        <div className="logo-container">
+          <span className="logo-icon">🎬</span>
+          <h1>Flixster</h1>
+        </div>
+        {/* pass the search handler to SearchBar */}
+        <SearchBar onSearch={handleSearch} onNowPlaying={clearSearch} />
       </header>
 
       {/* modal component */}
@@ -205,7 +247,7 @@ const App = () => {
 
       {/* sort dropdown component */}
       <div className="sort-container">
-        <Sort />
+        <Sort onSortChange={handleSortChange} />
       </div>
 
       {/* show "no results" message if needed */}
@@ -227,6 +269,11 @@ const App = () => {
           )}
         </>
       )}
+
+      {/* fixed footer with copyright */}
+      <footer className="App-footer">
+        <p>&copy; {new Date().getFullYear()} Flixster. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
