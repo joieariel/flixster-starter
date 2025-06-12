@@ -4,6 +4,7 @@ import MovieList from "./MovieList";
 import LoadMore from "./LoadMore";
 import SearchBar from "./SearchBar";
 import Modal from "./Modal";
+import Sort from "./Sort";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -201,6 +202,11 @@ const App = () => {
           <button onClick={clearSearch}>Back to Now Playing</button>
         </div>
       )}
+
+      {/* sort dropdown component */}
+      <div className="sort-container">
+        <Sort />
+      </div>
 
       {/* show "no results" message if needed */}
       {noResults ? (
