@@ -113,7 +113,7 @@ If I had more time I would have not asked for as much help from instructors and 
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-I did not demo this time. My peers had very nice styling, I want to do more research on styling next time and go beyond what we learned in the Codepath class for future projects. Styling can make a "boring" site have more of an appeal even if the actual features never changed.
+I did not demo this time. My peers had very nice styling, I want to do more research on styling next time and go beyond what we learned in the Codepath class for future projects. Styling can make a "boring" site have more of an appeal even if the actual features never changed. I also really like that one person added different cursor styles for different parts of the site. I want to try that next time. For example, she changed it to a pointer when you hover over a button.
 
 ### Open-source libraries used
 
