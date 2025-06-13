@@ -228,9 +228,9 @@ const App = () => {
       const data = await response.json();
 
       // update the selected movie with additional details
-      setSelectedMovie(prevMovie => ({
+      setSelectedMovie((prevMovie) => ({
         ...prevMovie,
-        runtime: data.runtime
+        runtime: data.runtime,
       }));
     } catch (error) {
       console.error("Error fetching movie details:", error);
@@ -364,10 +364,11 @@ const App = () => {
         <SearchBar onSearch={handleSearch} onNowPlaying={clearSearch} />
       </header>
 
-      {/* banner component */}
-      <Banner />
+      <main>
+        {/* banner component */}
+        <Banner />
 
-      {/* modal component */}
+        {/* modal component */}
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -377,7 +378,9 @@ const App = () => {
           <div>
             <h2>{selectedMovie.title}</h2>
             <p>Release Date: {selectedMovie.release_date}</p>
-            {selectedMovie.runtime && <p>Runtime: {selectedMovie.runtime} minutes</p>}
+            {selectedMovie.runtime && (
+              <p>Runtime: {selectedMovie.runtime} minutes</p>
+            )}
             {/* check if movie has genre ids if so display */}
             {selectedMovie.genre_ids && selectedMovie.genre_ids.length > 0 && (
               // map each genre ID to name, if not in map display unknown
@@ -456,6 +459,8 @@ const App = () => {
           </section>
         </>
       )}
+
+      </main>
 
       <footer className="App-footer">
         <p>&copy; 2025 Flixster. All rights reserved.</p>
