@@ -27,7 +27,7 @@ const genreMap = {
   10770: "TV Movie",
   53: "Thriller",
   10752: "War",
-  37: "Western"
+  37: "Western",
 };
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -215,6 +215,26 @@ const App = () => {
     setTrailerUrl("");
     // fetch the trailer for this movie
     fetchMovieTrailer(movie.id);
+    // fetch detailed movie info including runtime
+    fetchMovieDetails(movie.id);
+  };
+
+  // function to fetch detailed movie information
+  const fetchMovieDetails = async (movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+      );
+      const data = await response.json();
+
+      // update the selected movie with additional details
+      setSelectedMovie(prevMovie => ({
+        ...prevMovie,
+        runtime: data.runtime
+      }));
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
   };
 
   // function to fetch movie trailer from TMDB API using the movie's ID
@@ -230,13 +250,13 @@ const App = () => {
       // first try to find an official trailer hosted on YouTube
       // we prioritize videos that are explicitly marked as "Trailer" type
       let trailer = data.results.find(
-        video => video.type === "Trailer" && video.site === "YouTube"
+        (video) => video.type === "Trailer" && video.site === "YouTube"
       );
 
       // if no official trailer was found, fall back to any YouTube video for this movie
       // this could be a teaser, behind-the-scenes, clip, etc.
       if (!trailer) {
-        trailer = data.results.find(video => video.site === "YouTube");
+        trailer = data.results.find((video) => video.site === "YouTube");
       }
 
       // if we found any suitable video, construct the YouTube embed URL
@@ -323,7 +343,9 @@ const App = () => {
 
       if (isAlreadyWatched) {
         // remove it from watched list
-        return prevWatched.filter((watchedMovie) => watchedMovie.id !== movie.id);
+        return prevWatched.filter(
+          (watchedMovie) => watchedMovie.id !== movie.id
+        );
       } else {
         // add it to watched list
         return [...prevWatched, movie];
@@ -355,21 +377,24 @@ const App = () => {
           <div>
             <h2>{selectedMovie.title}</h2>
             <p>Release Date: {selectedMovie.release_date}</p>
+            {selectedMovie.runtime && <p>Runtime: {selectedMovie.runtime} minutes</p>}
             {/* check if movie has genre ids if so display */}
             {selectedMovie.genre_ids && selectedMovie.genre_ids.length > 0 && (
               // map each genre ID to name, if not in map display unknown
               // join the genres and seperate w commas to be more readable
-              <p>Genres: {selectedMovie.genre_ids.map(id => genreMap[id] || "Unknown").join(", ")}</p>
+              <p>
+                Genres:{" "}
+                {selectedMovie.genre_ids
+                  .map((id) => genreMap[id] || "Unknown")
+                  .join(", ")}
+              </p>
             )}
             <p>Overview: {selectedMovie.overview}</p>
             <p>Rating: {selectedMovie.vote_average} / 10</p>
 
             {/* trailer button - only show if a trailer URL exists for this movie */}
             {trailerUrl && (
-              <button
-                className="trailer-button"
-                onClick={toggleTrailer}
-              >
+              <button className="trailer-button" onClick={toggleTrailer}>
                 {/* button text changes based on whether trailer is currently showing */}
                 {showTrailer ? "Hide Trailer" : "Watch Trailer"}
               </button>

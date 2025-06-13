@@ -4,7 +4,7 @@ Submitted by: **Joie Whitmon**
 
 Estimated time spent: **25** hours spent in total
 
-Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Flixster Deployed Site](https://flixster-starter-0yp2.onrender.com/)
 
 ### Application Features
 
@@ -59,13 +59,12 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
     - [x] Search bar
     - [x] Movie grid
     - [x] Footer section
-    - [X] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
+    - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
   - [x] **Deployment**
   - [x] Website is deployed via Render.
   - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
 
 #### STRETCH FEATURES
-
 
 - [x] **Embedded Movie Trailers**
   - [x] Within the pop-up modal displaying a movie's details, the movie trailer is viewable.
@@ -77,7 +76,7 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
     - [x] Clicking on the visual element should mark the movie as favorited
     - [x] There should be visual feedback (such as the heart turning a different color) to show that the movie has been favorited by the user.
   - [x] If the movie is already favorited:
-    - [x] Clicking on the visual element should mark the movie as *not* favorited.
+    - [x] Clicking on the visual element should mark the movie as _not_ favorited.
     - [x] There should be visual feedback (such as the heart turning a different color) to show that the movie has been unfavorited.
 - [x] **Watched Checkbox**
   - [x] For each movie displayed, users can mark the movie as watched.
@@ -86,7 +85,7 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
     - [x] Clicking on the visual element should mark the movie as watched
     - [x] There should be visual feedback (such as the eye turning a different color) to show that the movie has been watched by the user.
   - [x] If the movie is already watched:
-    - [x] Clicking on the visual element should mark the movie as *not* watched.
+    - [x] Clicking on the visual element should mark the movie as _not_ watched.
     - [x] There should be visual feedback (such as the eye turning a different color) to show that the movie has not been watched.
 - [ ] **Sidebar**
   - [ ] The website includes a side navigation bar.
@@ -102,21 +101,21 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
 
-`ADD_EMBEDDED_CODE_HERE`
+`https://flixster-starter-0yp2.onrender.com`
 
 ### Reflection
 
-* Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
+- Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Overall, yes. We were introduced to React and the main parts of a React website. For example, components, state, APIs, and hooks and they all were shown in the project. However, I still felt unprepared for certain parts. Of course some of the stretch features like sort, and embedded youtube because we did not directly discuss that so it was a challenge as expected. However, some of the fetch and async/await I had trouble with and getting the info to show up from the API was a challenge at first since it was not exactly how we did in the labs but still very very closely related so they were helpful.
 
-* If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
+- If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+If I had more time I would have not asked for as much help from instructors and peers and spent more time reseaerching and watching videos. Basically just getting 100% familiar and comfortable with the content. However, because of the time constraints I learned enough to get by but I fear I don't feel 100% confident.
 
-* Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+- Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I did not demo this time. My peers had very nice styling, I want to do more research on styling next time and go beyond what we learned in the Codepath class for future projects. Styling can make a "boring" site have more of an appeal even if the actual features never changed.
 
 ### Open-source libraries used
 
@@ -125,3 +124,5 @@ Add your response here
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+
+Shoutout to Reena for helping me out when she finished her project. Shoutout to every single one of the TF's and instructors in Cohort 1 for helping me debug and get a clearer understanding on this week's topics.
