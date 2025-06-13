@@ -180,7 +180,9 @@ const App = () => {
     setSearchQuery("");
     setNoResults(false);
     setCurrentPage(1);
-    // will trigger a refect of now playing via useEffect
+    setSortMethod("none"); // Reset the sort method to default
+    // Directly fetch the first page of movies to ensure we get fresh data
+    getMovies(1);
   };
 
   // when button is clicked
