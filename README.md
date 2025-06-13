@@ -99,9 +99,7 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
 
 ### Walkthrough Video
 
-
-
-`VIDEO GOES HERE`
+<div style="position: relative; padding-bottom: 64.55089820359281%; height: 0;"><iframe src="https://www.loom.com/embed/5ebf9516219b4853a0f54fe12bcd744b?sid=a3d5f98c-bb4d-4ddb-9d9a-be29dd1b24f0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ### Reflection
 

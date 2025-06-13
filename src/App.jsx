@@ -181,7 +181,7 @@ const App = () => {
     setNoResults(false);
     setCurrentPage(1);
     setSortMethod("none"); // Reset the sort method to default
-    // Directly fetch the first page of movies to ensure we get fresh data
+    // directly fetch the first page of movies to ensure we get fresh data (fixed the now playing bug)
     getMovies(1);
   };
 
