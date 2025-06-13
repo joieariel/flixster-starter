@@ -5,6 +5,7 @@ import LoadMore from "./LoadMore";
 import SearchBar from "./SearchBar";
 import Modal from "./Modal";
 import Sort from "./Sort";
+import Banner from "./Banner";
 
 // genre mapping based on TMDB genre IDs (alphabetical)
 const genreMap = {
@@ -68,9 +69,9 @@ const App = () => {
   useEffect(() => {
     //only fetch now playing movies when not searching
     if (!isSearching) {
-      getMovies(currentPage); // runs once when first page is loaded
+      getMovies(currentPage); // runs when component mounts or when isSearching changes to false
     }
-  }, []);
+  }, [isSearching, currentPage]);
 
   // fetches a specific page of "now playing" movies from tmdb api
   const getMovies = async (page) => {
@@ -334,12 +335,15 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <div className="logo-container">
-          <span className="logo-icon">🎬</span>
+          <span className="logo-icon">🍿</span>
           <h1>Flixster</h1>
         </div>
         {/* pass the search handler to SearchBar */}
         <SearchBar onSearch={handleSearch} onNowPlaying={clearSearch} />
       </header>
+
+      {/* banner component */}
+      <Banner />
 
       {/* modal component */}
       <Modal

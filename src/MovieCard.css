@@ -1,15 +1,17 @@
 .movie-card {
-    border: 1px solid black;
+    border: 1px solid #333333;
     border-radius: 20px;
     padding: 15px;
     position: relative;
     cursor: pointer;
     transition: transform 0.2s;
-    box-shadow: 5px 1px #c7c7c7;
+    box-shadow: 5px 1px #333333;
     margin: 8px;
     width: 14%; /*  fit 6 cards in a row with margins */
     box-sizing: border-box;
     text-align: center;
+    background-color: #1E1E1E;
+    color: #FFFFFF;
 }
 
 /* responsive card sizes for different screen widths */
@@ -39,7 +41,7 @@
 }
 
 .movie-card:hover {
-    background-color: rgb(234, 234, 234);
+    background-color: #2A2A2A;
     transform: translateY(-5px);
 }
 
@@ -73,23 +75,24 @@
 /* favorite button styles */
 .favorite-btn {
     background-color: transparent;
-    border: 1px solid #ccc;
+    border: 1px solid #555555;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
+    color: #E0E0E0;
 }
 
 .favorite-btn:hover {
-    background-color: #f8f8f8;
+    background-color: #333333;
 }
 
 /* style for favorited state */
 .favorite-btn.favorited {
-    background-color: #ffebee;
-    color: #e53935;
-    border-color: #e53935;
+    background-color: rgba(229, 9, 20, 0.2);
+    color: #E50914;
+    border-color: #E50914;
 }
 
 /* prevent the movie card click from triggering when clicking the button */
@@ -102,23 +105,24 @@
 /* watched button styles */
 .watched-btn {
     background-color: transparent;
-    border: 1px solid #ccc;
+    border: 1px solid #555555;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
+    color: #E0E0E0;
 }
 
 .watched-btn:hover {
-    background-color: #f8f8f8;
+    background-color: #333333;
 }
 
 /* style for watched state */
 .watched-btn.watched {
-    background-color: #e8f5e9;
-    color: #43a047;
-    border-color: #43a047;
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border-color: #FFD700;
 }
 
 .watched {

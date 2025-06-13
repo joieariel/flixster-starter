@@ -1,12 +1,13 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #121212;
+  color: #FFFFFF;
   font-size: 16px;
 }
 
 button {
-  background-color: #282c34;
+  background-color: #333333;
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -17,7 +18,7 @@ button {
 }
 
 button:hover {
-  background-color: #777;
+  background-color: #444444;
   color: white;
 }
 
@@ -52,9 +53,9 @@ button:hover {
 
 /* base responsive container */
 .container {
-  width: 100%;         /* takes full width of parent element */
-  max-width: 1200px;   /* prevents container from getting too wide on large screens */
-  margin: 0 auto;      /* centers the container horizontally */
-  padding: 0 15px;     /* adds spacing on the sides for content breathing room */
-  box-sizing: border-box; /* includes padding in width calculation to avoid overflow */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
