@@ -7,12 +7,18 @@
     transition: transform 0.2s;
     box-shadow: 5px 1px #c7c7c7;
     margin: 8px;
-    width: 22%; /*  fit 4 cards in a row with margins */
+    width: 14%; /*  fit 6 cards in a row with margins */
     box-sizing: border-box;
     text-align: center;
 }
 
 /* responsive card sizes for different screen widths */
+@media (max-width: 1400px) {
+    .movie-card {
+        width: 22%; /* 4 cards per row for extra large screens */
+    }
+}
+
 @media (max-width: 1200px) {
     .movie-card {
         width: 30%; /* 3 cards per row for large screens */
@@ -62,4 +68,61 @@
     text-overflow: ellipsis; /* add ellipsis for overflow text */
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+
+/* favorite button styles */
+.favorite-btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.favorite-btn:hover {
+    background-color: #f8f8f8;
+}
+
+/* style for favorited state */
+.favorite-btn.favorited {
+    background-color: #ffebee;
+    color: #e53935;
+    border-color: #e53935;
+}
+
+/* prevent the movie card click from triggering when clicking the button */
+.movie-favorite {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+}
+
+/* watched button styles */
+.watched-btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.watched-btn:hover {
+    background-color: #f8f8f8;
+}
+
+/* style for watched state */
+.watched-btn.watched {
+    background-color: #e8f5e9;
+    color: #43a047;
+    border-color: #43a047;
+}
+
+.watched {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
 }

@@ -6,6 +6,29 @@ import SearchBar from "./SearchBar";
 import Modal from "./Modal";
 import Sort from "./Sort";
 
+// genre mapping based on TMDB genre IDs (alphabetical)
+const genreMap = {
+  28: "Action",
+  12: "Adventure",
+  16: "Animation",
+  35: "Comedy",
+  80: "Crime",
+  99: "Documentary",
+  18: "Drama",
+  10751: "Family",
+  14: "Fantasy",
+  36: "History",
+  27: "Horror",
+  10402: "Music",
+  9648: "Mystery",
+  10749: "Romance",
+  878: "Science Fiction",
+  10770: "TV Movie",
+  53: "Thriller",
+  10752: "War",
+  37: "Western"
+};
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const App = () => {
@@ -31,7 +54,16 @@ const App = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   // state to track the current sort method
   const [sortMethod, setSortMethod] = useState("none");
+  // state to store the YouTube trailer URL for the selected movie
+  const [trailerUrl, setTrailerUrl] = useState("");
+  // state to track if trailer video is currently being shown in the modal
+  const [showTrailer, setShowTrailer] = useState(false);
 
+  // state to track favorited movies array
+  const [favoritedMovies, setFavoritedMovies] = useState([]);
+
+  // state to track watched movies array
+  const [watchedMovies, setWatchedMovies] = useState([]);
 
   useEffect(() => {
     //only fetch now playing movies when not searching
@@ -177,6 +209,54 @@ const App = () => {
     // store the clicked movie in the state for the modal's use
     setSelectedMovie(movie);
     setIsOpen(true);
+    // reset trailer state when opening a new movie
+    setShowTrailer(false);
+    setTrailerUrl("");
+    // fetch the trailer for this movie
+    fetchMovieTrailer(movie.id);
+  };
+
+  // function to fetch movie trailer from TMDB API using the movie's ID
+  const fetchMovieTrailer = async (movieId) => {
+    try {
+      // make API request to TMDB's videos endpoint for this specific movie
+      // this endpoint returns all videos associated with the movie (trailers, teasers, clips, etc.)
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
+      );
+      const data = await response.json();
+
+      // first try to find an official trailer hosted on YouTube
+      // we prioritize videos that are explicitly marked as "Trailer" type
+      let trailer = data.results.find(
+        video => video.type === "Trailer" && video.site === "YouTube"
+      );
+
+      // if no official trailer was found, fall back to any YouTube video for this movie
+      // this could be a teaser, behind-the-scenes, clip, etc.
+      if (!trailer) {
+        trailer = data.results.find(video => video.site === "YouTube");
+      }
+
+      // if we found any suitable video, construct the YouTube embed URL
+      // the "key" property contains the YouTube video ID that we need
+      if (trailer) {
+        setTrailerUrl(`https://www.youtube.com/embed/${trailer.key}`);
+      } else {
+        // if no videos were found, clear the trailer URL
+        setTrailerUrl("");
+      }
+    } catch (error) {
+      // log any errors that occur during the fetch and clear the trailer URL
+      console.error("Error fetching movie trailer:", error);
+      setTrailerUrl("");
+    }
+  };
+
+  // function to toggle the trailer visibility in the modal
+  // this switches between showing and hiding the embedded YouTube player
+  const toggleTrailer = () => {
+    setShowTrailer(!showTrailer);
   };
 
   // function to handle sorting when an option is selected
@@ -195,7 +275,9 @@ const App = () => {
         break;
       case "date":
         // sort by release date (newest first)
-        sortedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        sortedMovies.sort(
+          (a, b) => new Date(b.release_date) - new Date(a.release_date)
+        );
         break;
       case "rating":
         // sort by vote average (highest first)
@@ -208,6 +290,44 @@ const App = () => {
 
     // update the movies state with the sorted array
     setMovies(sortedMovies);
+  };
+
+  // function to handle favoriting mvoies
+  // takes movie obj as param (movie that was clicked on)
+  const handleFavoriteClick = (movie) => {
+    //update prev state
+    setFavoritedMovies((prevFavorites) => {
+      // check if movies is alr a fav using .some to check if any movie in favs list has same ID
+      const isAlreadyFavorited = prevFavorites.some(
+        (favMovie) => favMovie.id === movie.id
+      );
+
+      if (isAlreadyFavorited) {
+        // remove it from favs using .filter() to create new array w/ all movies except the clicked one
+        return prevFavorites.filter((favMovie) => favMovie.id !== movie.id);
+      } else {
+        // add it to a new array w/ prev favs and the newly added one
+        return [...prevFavorites, movie];
+      }
+    });
+  };
+
+  // function to handle watched movies
+  const handleWatchedClick = (movie) => {
+    setWatchedMovies((prevWatched) => {
+      // check if movie is already in watched list
+      const isAlreadyWatched = prevWatched.some(
+        (watchedMovie) => watchedMovie.id === movie.id
+      );
+
+      if (isAlreadyWatched) {
+        // remove it from watched list
+        return prevWatched.filter((watchedMovie) => watchedMovie.id !== movie.id);
+      } else {
+        // add it to watched list
+        return [...prevWatched, movie];
+      }
+    });
   };
 
   return (
@@ -231,17 +351,50 @@ const App = () => {
           <div>
             <h2>{selectedMovie.title}</h2>
             <p>Release Date: {selectedMovie.release_date}</p>
+            {/* check if movie has genre ids if so display */}
+            {selectedMovie.genre_ids && selectedMovie.genre_ids.length > 0 && (
+              // map each genre ID to name, if not in map display unknown
+              // join the genres and seperate w commas to be more readable
+              <p>Genres: {selectedMovie.genre_ids.map(id => genreMap[id] || "Unknown").join(", ")}</p>
+            )}
             <p>Overview: {selectedMovie.overview}</p>
             <p>Rating: {selectedMovie.vote_average} / 10</p>
+
+            {/* trailer button - only show if a trailer URL exists for this movie */}
+            {trailerUrl && (
+              <button
+                className="trailer-button"
+                onClick={toggleTrailer}
+              >
+                {/* button text changes based on whether trailer is currently showing */}
+                {showTrailer ? "Hide Trailer" : "Watch Trailer"}
+              </button>
+            )}
+
+            {/* youtube trailer embed - only rendered when both showTrailer is true and we have a valid URL */}
+            {showTrailer && trailerUrl && (
+              <div className="trailer-container">
+                {/* standard youtube iframe embed with responsive width and fixed height */}
+                <iframe
+                  width="100%"
+                  height="315"
+                  src={trailerUrl}
+                  title={`${selectedMovie.title} Trailer`}
+                  /* these permissions are required for youtube embeds to function properly */
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ border: 0 }}
+                ></iframe>
+              </div>
+            )}
           </div>
         )}
       </Modal>
 
-      {/* show search status and clear search option */}
+      {/* show search status */}
       {isSearching && (
         <div className="search-status">
           <p>Search results for: "{searchQuery}"</p>
-          <button onClick={clearSearch}>Back to Now Playing</button>
         </div>
       )}
 
@@ -258,21 +411,25 @@ const App = () => {
       ) : (
         <>
           <section className="movie-list-container">
-            <MovieList movies={movies} onMovieClick={handleMovieClick} />
+            <MovieList
+              movies={movies}
+              onMovieClick={handleMovieClick}
+              onFavoriteClick={handleFavoriteClick}
+              favoritedMovies={favoritedMovies}
+              onWatchedClick={handleWatchedClick}
+              watchedMovies={watchedMovies}
+            />
           </section>
 
           {/* only show load more button if we have movies and more are available */}
-          {movies.length > 0 && (
-            <section className="load-btn-container">
-              <LoadMore onLoadMore={handleLoadMore} hasMore={hasMoreMovies} />
-            </section>
-          )}
+          <section className="load-btn-container">
+            <LoadMore onLoadMore={handleLoadMore} hasMore={hasMoreMovies} />
+          </section>
         </>
       )}
 
-      {/* fixed footer with copyright */}
       <footer className="App-footer">
-        <p>&copy; {new Date().getFullYear()} Flixster. All rights reserved.</p>
+        <p>&copy; 2025 Flixster. All rights reserved.</p>
       </footer>
     </div>
   );

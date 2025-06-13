@@ -47,7 +47,7 @@ function SearchBar({ onSearch, onNowPlaying }) {
             className="clear-button"
             onClick={handleClear}
           >
-            ✕
+            Clear
           </button>
         )}
       </div>

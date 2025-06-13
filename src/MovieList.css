@@ -4,12 +4,18 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start; /* to align tops of cards */
-    max-width: 1200px;
+    max-width: 1500px; /* increased to fit 6 cards in a row */
     margin: 0 auto;
     padding: 0 15px;
 }
 
 /* responsive layout for different screen sizes */
+@media (max-width: 1500px) {
+    .movie-list {
+        max-width: 1200px;
+    }
+}
+
 @media (max-width: 1200px) {
     .movie-list {
         max-width: 960px;

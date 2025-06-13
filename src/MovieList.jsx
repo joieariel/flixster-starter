@@ -10,12 +10,20 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
 
-const MovieList = ({ movies, onMovieClick }) => {
+const MovieList = ({ movies, onMovieClick, onFavoriteClick, favoritedMovies, onWatchedClick, watchedMovies }) => {
   console.log(movies);
   return (
     <div className="movie-list">
       {movies.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} onMovieClick={onMovieClick} />
+        <MovieCard
+          movie={movie}
+          key={movie.id}
+          onMovieClick={onMovieClick}
+          onFavoriteClick={onFavoriteClick}
+          isFavorited={favoritedMovies?.some(favMovie => favMovie.id === movie.id)}
+          onWatchedClick={onWatchedClick}
+          isWatched={watchedMovies?.some(watchedMovie => watchedMovie.id === movie.id)}
+        />
       ))}
     </div>
   );
